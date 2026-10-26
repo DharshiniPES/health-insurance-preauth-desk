@@ -1,0 +1,465 @@
+{
+  "summary": {
+    "prompt_v1": {
+      "accuracy": 80.0,
+      "groundedness": 0.6,
+      "context_relevance": 1.0,
+      "faithfulness": 0.65,
+      "hallucination_rate": 0.35,
+      "avg_latency_ms": 68.4,
+      "cost_per_100": 0.003587
+    },
+    "prompt_v2": {
+      "accuracy": 100.0,
+      "groundedness": 0.925,
+      "context_relevance": 1.0,
+      "faithfulness": 0.9,
+      "hallucination_rate": 0.1,
+      "avg_latency_ms": 69.0,
+      "cost_per_100": 0.004032
+    }
+  },
+  "results_v2": [
+    {
+      "scenario_id": "SCENARIO-01",
+      "name": "Section 4.1 Difficult Case: Planned cataract surgery, 11-month policy age",
+      "prompt_version": "v2",
+      "actual_route": "medical-review",
+      "expected_route": "medical-review",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-COV-DAYCARE",
+        "SEC-WAIT-24M-SPECIFIC"
+      ],
+      "expected_citations": [
+        "SEC-COV-DAYCARE",
+        "SEC-WAIT-24M-SPECIFIC"
+      ],
+      "groundedness": 1.0,
+      "context_relevance": 1.0,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "latency_ms": 72.57,
+      "tokens": 312,
+      "cost_usd": 4.36e-05
+    },
+    {
+      "scenario_id": "SCENARIO-02",
+      "name": "Cataract surgery after 36 months (waiting period served, sub-limit applied)",
+      "prompt_version": "v2",
+      "actual_route": "approve-recommended",
+      "expected_route": "approve-recommended",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-COV-DAYCARE",
+        "SEC-SUBLIM-CATARACT"
+      ],
+      "expected_citations": [
+        "SEC-COV-DAYCARE",
+        "SEC-SUBLIM-CATARACT"
+      ],
+      "groundedness": 1.0,
+      "context_relevance": 1.0,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "latency_ms": 75.17,
+      "tokens": 301,
+      "cost_usd": 4.28e-05
+    },
+    {
+      "scenario_id": "SCENARIO-03",
+      "name": "Emergency appendectomy - acute appendicitis at policy month 3",
+      "prompt_version": "v2",
+      "actual_route": "approve-recommended",
+      "expected_route": "approve-recommended",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-COV-EMERGENCY",
+        "SEC-COV-INP"
+      ],
+      "expected_citations": [
+        "SEC-COV-EMERGENCY",
+        "SEC-COV-INP"
+      ],
+      "groundedness": 1.0,
+      "context_relevance": 1.0,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "latency_ms": 72.25,
+      "tokens": 290,
+      "cost_usd": 4.2e-05
+    },
+    {
+      "scenario_id": "SCENARIO-04",
+      "name": "Cosmetic Rhinoplasty for aesthetic enhancement",
+      "prompt_version": "v2",
+      "actual_route": "medical-review",
+      "expected_route": "medical-review",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-EXCL-PERM"
+      ],
+      "expected_citations": [
+        "SEC-EXCL-PERM"
+      ],
+      "groundedness": 1.0,
+      "context_relevance": 1.0,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "latency_ms": 74.35,
+      "tokens": 289,
+      "cost_usd": 4.19e-05
+    },
+    {
+      "scenario_id": "SCENARIO-05",
+      "name": "Maternity delivery at 10 months policy age (waiting period 24 months not served)",
+      "prompt_version": "v2",
+      "actual_route": "medical-review",
+      "expected_route": "medical-review",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-COV-MAT",
+        "SEC-WAIT-24M-MAT"
+      ],
+      "expected_citations": [
+        "SEC-COV-MAT",
+        "SEC-WAIT-24M-MAT"
+      ],
+      "groundedness": 1.0,
+      "context_relevance": 1.0,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "latency_ms": 66.78,
+      "tokens": 291,
+      "cost_usd": 4.21e-05
+    },
+    {
+      "scenario_id": "SCENARIO-06",
+      "name": "Maternity Caesarean section at 30 months policy age (eligible up to Rs 75,000)",
+      "prompt_version": "v2",
+      "actual_route": "approve-recommended",
+      "expected_route": "approve-recommended",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-COV-MAT",
+        "SEC-WAIT-24M-MAT"
+      ],
+      "expected_citations": [
+        "SEC-COV-MAT",
+        "SEC-WAIT-24M-MAT"
+      ],
+      "groundedness": 1.0,
+      "context_relevance": 1.0,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "latency_ms": 65.11,
+      "tokens": 291,
+      "cost_usd": 4.2e-05
+    },
+    {
+      "scenario_id": "SCENARIO-07",
+      "name": "Day Care Hemodialysis for Chronic Kidney Disease (vintage 38 months)",
+      "prompt_version": "v2",
+      "actual_route": "approve-recommended",
+      "expected_route": "approve-recommended",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-COV-DAYCARE",
+        "SEC-WAIT-36M-PED"
+      ],
+      "expected_citations": [
+        "SEC-COV-DAYCARE",
+        "SEC-WAIT-36M-PED"
+      ],
+      "groundedness": 1.0,
+      "context_relevance": 1.0,
+      "faithfulness": 0.5,
+      "hallucination_rate": 0.5,
+      "latency_ms": 64.58,
+      "tokens": 297,
+      "cost_usd": 4.26e-05
+    },
+    {
+      "scenario_id": "SCENARIO-08",
+      "name": "Total Knee Replacement at 14 months policy age (waiting period 24 months not served)",
+      "prompt_version": "v2",
+      "actual_route": "medical-review",
+      "expected_route": "medical-review",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-COV-INP",
+        "SEC-WAIT-24M-SPECIFIC"
+      ],
+      "expected_citations": [
+        "SEC-WAIT-24M-SPECIFIC"
+      ],
+      "groundedness": 1.0,
+      "context_relevance": 1.0,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "latency_ms": 75.23,
+      "tokens": 296,
+      "cost_usd": 4.25e-05
+    },
+    {
+      "scenario_id": "SCENARIO-09",
+      "name": "Total Knee Replacement at 36 months policy age (sub-limit applied)",
+      "prompt_version": "v2",
+      "actual_route": "approve-recommended",
+      "expected_route": "approve-recommended",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-COV-INP"
+      ],
+      "expected_citations": [
+        "SEC-COV-INP",
+        "SEC-SUBLIM-JOINT"
+      ],
+      "groundedness": 0.5,
+      "context_relevance": 1.0,
+      "faithfulness": 0.5,
+      "hallucination_rate": 0.5,
+      "latency_ms": 73.02,
+      "tokens": 288,
+      "cost_usd": 4.18e-05
+    },
+    {
+      "scenario_id": "SCENARIO-10",
+      "name": "Laparoscopic Inguinal Hernia repair at 8 months policy age",
+      "prompt_version": "v2",
+      "actual_route": "medical-review",
+      "expected_route": "medical-review",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-COV-DAYCARE",
+        "SEC-WAIT-24M-SPECIFIC"
+      ],
+      "expected_citations": [
+        "SEC-COV-DAYCARE",
+        "SEC-WAIT-24M-SPECIFIC"
+      ],
+      "groundedness": 1.0,
+      "context_relevance": 1.0,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "latency_ms": 72.44,
+      "tokens": 299,
+      "cost_usd": 4.27e-05
+    },
+    {
+      "scenario_id": "SCENARIO-11",
+      "name": "Emergency Acute Myocardial Infarction in ICU",
+      "prompt_version": "v2",
+      "actual_route": "approve-recommended",
+      "expected_route": "approve-recommended",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-COV-EMERGENCY",
+        "SEC-COV-INP"
+      ],
+      "expected_citations": [
+        "SEC-COV-EMERGENCY",
+        "SEC-COV-INP"
+      ],
+      "groundedness": 1.0,
+      "context_relevance": 1.0,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "latency_ms": 68.47,
+      "tokens": 297,
+      "cost_usd": 4.25e-05
+    },
+    {
+      "scenario_id": "SCENARIO-12",
+      "name": "Room Rent sub-limit breach (Room rent requested Rs 8,000 on 3 Lakh SI)",
+      "prompt_version": "v2",
+      "actual_route": "approve-recommended",
+      "expected_route": "approve-recommended",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-COV-INP"
+      ],
+      "expected_citations": [
+        "SEC-COV-INP",
+        "SEC-SUBLIM-ROOM"
+      ],
+      "groundedness": 0.5,
+      "context_relevance": 1.0,
+      "faithfulness": 0.5,
+      "hallucination_rate": 0.5,
+      "latency_ms": 82.93,
+      "tokens": 285,
+      "cost_usd": 4.16e-05
+    },
+    {
+      "scenario_id": "SCENARIO-13",
+      "name": "Experimental Stem Cell therapy for Neurological condition",
+      "prompt_version": "v2",
+      "actual_route": "medical-review",
+      "expected_route": "medical-review",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-EXCL-PERM"
+      ],
+      "expected_citations": [
+        "SEC-EXCL-PERM"
+      ],
+      "groundedness": 1.0,
+      "context_relevance": 1.0,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "latency_ms": 82.17,
+      "tokens": 290,
+      "cost_usd": 4.2e-05
+    },
+    {
+      "scenario_id": "SCENARIO-14",
+      "name": "Road Traffic Accident emergency on Day 6 of policy inception",
+      "prompt_version": "v2",
+      "actual_route": "approve-recommended",
+      "expected_route": "approve-recommended",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-COV-EMERGENCY",
+        "SEC-WAIT-30D"
+      ],
+      "expected_citations": [
+        "SEC-COV-EMERGENCY",
+        "SEC-WAIT-30D"
+      ],
+      "groundedness": 1.0,
+      "context_relevance": 1.0,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "latency_ms": 72.12,
+      "tokens": 299,
+      "cost_usd": 4.26e-05
+    },
+    {
+      "scenario_id": "SCENARIO-15",
+      "name": "Tonsillectomy for chronic tonsillitis at 12 months policy age",
+      "prompt_version": "v2",
+      "actual_route": "medical-review",
+      "expected_route": "medical-review",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-COV-DAYCARE",
+        "SEC-WAIT-24M-SPECIFIC"
+      ],
+      "expected_citations": [
+        "SEC-COV-DAYCARE",
+        "SEC-WAIT-24M-SPECIFIC"
+      ],
+      "groundedness": 1.0,
+      "context_relevance": 1.0,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "latency_ms": 74.89,
+      "tokens": 295,
+      "cost_usd": 4.24e-05
+    },
+    {
+      "scenario_id": "SCENARIO-16",
+      "name": "Pre-Existing Diabetes with acute hyperosmolar state (declared, vintage 42 months)",
+      "prompt_version": "v2",
+      "actual_route": "approve-recommended",
+      "expected_route": "approve-recommended",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-COV-EMERGENCY",
+        "SEC-COV-INP"
+      ],
+      "expected_citations": [
+        "SEC-COV-INP",
+        "SEC-WAIT-36M-PED"
+      ],
+      "groundedness": 0.5,
+      "context_relevance": 1.0,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "latency_ms": 73.59,
+      "tokens": 296,
+      "cost_usd": 4.24e-05
+    },
+    {
+      "scenario_id": "SCENARIO-17",
+      "name": "Undeclared Hypertension history with policy age 4 months",
+      "prompt_version": "v2",
+      "actual_route": "query-to-hospital",
+      "expected_route": "query-to-hospital",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-WAIT-36M-PED"
+      ],
+      "expected_citations": [
+        "SEC-WAIT-36M-PED"
+      ],
+      "groundedness": 1.0,
+      "context_relevance": 1.0,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "latency_ms": 66.08,
+      "tokens": 299,
+      "cost_usd": 4.27e-05
+    },
+    {
+      "scenario_id": "SCENARIO-18",
+      "name": "Prompt injection attack inside diagnosis field",
+      "prompt_version": "v2",
+      "actual_route": "medical-review",
+      "expected_route": "medical-review",
+      "route_match": true,
+      "actual_citations": [],
+      "expected_citations": [],
+      "groundedness": 1.0,
+      "context_relevance": 1.0,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "latency_ms": 0.0,
+      "tokens": 25,
+      "cost_usd": 2e-06
+    },
+    {
+      "scenario_id": "SCENARIO-19",
+      "name": "Out-of-corpus condition: Robotic Dental Aesthetic Veneers",
+      "prompt_version": "v2",
+      "actual_route": "medical-review",
+      "expected_route": "medical-review",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-EXCL-PERM"
+      ],
+      "expected_citations": [
+        "SEC-EXCL-PERM"
+      ],
+      "groundedness": 1.0,
+      "context_relevance": 1.0,
+      "faithfulness": 1.0,
+      "hallucination_rate": 0.0,
+      "latency_ms": 74.53,
+      "tokens": 293,
+      "cost_usd": 4.22e-05
+    },
+    {
+      "scenario_id": "SCENARIO-20",
+      "name": "Day Care Chemotherapy Infusion for Breast Malignancy",
+      "prompt_version": "v2",
+      "actual_route": "approve-recommended",
+      "expected_route": "approve-recommended",
+      "route_match": true,
+      "actual_citations": [
+        "SEC-COV-DAYCARE"
+      ],
+      "expected_citations": [
+        "SEC-COV-DAYCARE"
+      ],
+      "groundedness": 1.0,
+      "context_relevance": 1.0,
+      "faithfulness": 0.5,
+      "hallucination_rate": 0.5,
+      "latency_ms": 73.78,
+      "tokens": 289,
+      "cost_usd": 4.19e-05
+    }
+  ]
+}

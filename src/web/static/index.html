@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health Insurance Pre-Authorisation Desk</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-box">
+        <span class="icon">🏥</span>
+        <div>
+          <h1>Health Insurance Pre-Authorisation Desk</h1>
+          <p class="subtitle">UE24AM342AA5 Mini Project 03 | Jackfruit (Level 3) | PES University</p>
+        </div>
+      </div>
+      <div class="header-status">
+        <span class="badge" id="cb-badge">Circuit Breaker: CLOSED</span>
+        <button id="btn-toggle-cb" class="btn-sm">Simulate Outage</button>
+      </div>
+    </header>
+
+    <!-- Top KPI Bar -->
+    <div class="kpi-bar" id="kpi-bar">
+      <div class="kpi-card"><span class="kpi-label">Uptime</span><span class="kpi-val" id="kpi-uptime">0s</span></div>
+      <div class="kpi-card"><span class="kpi-label">Total Runs</span><span class="kpi-val" id="kpi-runs">0</span></div>
+      <div class="kpi-card"><span class="kpi-label">p95 Latency</span><span class="kpi-val" id="kpi-p95">0 ms</span></div>
+      <div class="kpi-card"><span class="kpi-label">Success Rate</span><span class="kpi-val" id="kpi-success">100%</span></div>
+      <div class="kpi-card"><span class="kpi-label">Quarantined</span><span class="kpi-val" id="kpi-quarantine">0</span></div>
+      <div class="kpi-card"><span class="kpi-label">Cost / 100 Runs</span><span class="kpi-val" id="kpi-cost">$0.00</span></div>
+    </div>
+
+    <!-- Main Workspace -->
+    <div class="workspace">
+      <!-- Left Column: Request Builder & Presets -->
+      <section class="panel left-panel">
+        <div class="panel-header">
+          <h2>1. Pre-Authorisation Request (F1, D1)</h2>
+          <span class="tag">REST Boundary</span>
+        </div>
+
+        <div class="preset-selector">
+          <label>Load Demonstration Scenario:</label>
+          <select id="preset-dropdown">
+            <option value="cataract_11m">Scenario 4.1: Cataract Surgery (11 months vintage) [Difficult Case]</option>
+            <option value="cataract_36m">Scenario 02: Cataract Surgery (36 months - Covered with sub-limit)</option>
+            <option value="emergency_icu">Scenario 11: Emergency Myocardial Infarction in ICU</option>
+            <option value="cosmetic_rhino">Scenario 04: Cosmetic Rhinoplasty (Permanent Exclusion)</option>
+            <option value="room_breach">Scenario 12: Room Rent Capping Breach (3L SI, 8000 Rent)</option>
+            <option value="injection_attack">Scenario 18: Prompt Injection Attack in Diagnosis Field</option>
+            <option value="malformed_req">Demo Item 04: Malformed Request (Discharge before Admission)</option>
+            <option value="out_of_corpus">Scenario 19: Out of Corpus (Robotic Dental Veneers)</option>
+          </select>
+        </div>
+
+        <form id="preauth-form">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Policy ID</label>
+              <input type="text" id="policy_id" required>
+            </div>
+            <div class="form-group">
+              <label>Policy Inception Date</label>
+              <input type="date" id="policy_issue_date" required>
+            </div>
+            <div class="form-group">
+              <label>Sum Insured (INR)</label>
+              <input type="number" id="policy_sum_insured" required>
+            </div>
+            <div class="form-group">
+              <label>Patient Name & Age</label>
+              <div class="flex-row">
+                <input type="text" id="patient_name" placeholder="Name" required>
+                <input type="number" id="patient_age" placeholder="Age" style="width: 70px;" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Admission Type</label>
+              <select id="admission_type">
+                <option value="planned_surgical">Planned Surgical</option>
+                <option value="day_care">Day Care</option>
+                <option value="emergency">Emergency</option>
+                <option value="maternity">Maternity</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Admission / Discharge Dates</label>
+              <div class="flex-row">
+                <input type="date" id="admission_date" required>
+                <input type="date" id="discharge_date" required>
+              </div>
+            </div>
+            <div class="form-group full-width">
+              <label>Diagnosis & ICD-10 Code</label>
+              <div class="flex-row">
+                <input type="text" id="diagnosis" placeholder="Diagnosis description" required>
+                <input type="text" id="icd10_code" placeholder="ICD-10 (e.g. H25.9)" style="width: 120px;" required>
+              </div>
+            </div>
+            <div class="form-group full-width">
+              <label>Proposed Procedure</label>
+              <input type="text" id="procedure_name" required>
+            </div>
+            <div class="form-group">
+              <label>Estimated Cost (INR)</label>
+              <input type="number" id="estimated_cost" required>
+            </div>
+            <div class="form-group">
+              <label>Room Category & Rent/Day</label>
+              <div class="flex-row">
+                <select id="room_category_requested">
+                  <option value="single_private_ac">Single Private AC</option>
+                  <option value="twin_sharing">Twin Sharing</option>
+                  <option value="general_ward">General Ward</option>
+                  <option value="deluxe">Deluxe</option>
+                  <option value="icu">ICU</option>
+                  <option value="day_care">Day Care</option>
+                </select>
+                <input type="number" id="daily_room_rent" placeholder="Rent/day" style="width: 100px;">
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary" id="btn-submit">
+            <span>🚀 Submit Pre-Authorisation (Async)</span>
+          </button>
+        </form>
+      </section>
+
+      <!-- Right Column: Live Agent Execution & Recommendation -->
+      <section class="panel right-panel">
+        <div class="panel-header">
+          <h2>2. Agent Trace & Adjudication (A1, A2, A3, F5)</h2>
+          <span class="tag" id="run-status-badge">Awaiting Submission</span>
+        </div>
+
+        <div id="status-container" class="status-container" style="display: none;">
+          <div class="spinner-box" id="spinner-box">
+            <div class="spinner"></div>
+            <p id="poll-status-text">Submitting to queue runner...</p>
+          </div>
+
+          <!-- Quarantine Warning Box (Demo 4) -->
+          <div id="quarantine-box" class="quarantine-box" style="display: none;">
+            <div class="alert-icon">⚠️</div>
+            <div>
+              <h3>Request Quarantined at Ingestion Boundary (D1)</h3>
+              <p>Schema/cross-field validation failed. <strong>Zero agent runs were initiated.</strong></p>
+              <div id="quarantine-errors" class="quarantine-errors"></div>
+            </div>
+          </div>
+
+          <!-- Final Adjudication Card -->
+          <div id="result-box" class="result-box" style="display: none;">
+            <div class="verdict-banner" id="verdict-banner">
+              <div class="verdict-title-box">
+                <span class="verdict-label">RECOMMENDED ROUTE:</span>
+                <span class="verdict-route" id="res-route">APPROVE-RECOMMENDED</span>
+              </div>
+              <div class="verdict-limit" id="res-limit-box">
+                <span class="limit-label">Indicative Covered Limit:</span>
+                <span class="limit-val" id="res-limit">₹40,000</span>
+              </div>
+            </div>
+
+            <div class="summary-content">
+              <h4>Adjudication Justification:</h4>
+              <p id="res-reason" class="res-reason"></p>
+            </div>
+
+            <!-- Citations Section (F5) -->
+            <div class="citations-section">
+              <h4>Grounding Citations (Clause-Level Evidence):</h4>
+              <div id="res-citations" class="citation-list"></div>
+            </div>
+
+            <!-- Step by Step Execution Trace (A1, A6, D5) -->
+            <div class="trace-section">
+              <h4>Multi-Agent Step Trace & Tool Calls:</h4>
+              <div id="res-steps" class="steps-timeline"></div>
+            </div>
+
+            <!-- Feedback Bar (L6) -->
+            <div class="feedback-bar">
+              <span>Medical Officer Verification:</span>
+              <button class="btn-fb btn-fb-yes" id="btn-fb-yes">👍 Satisfactory</button>
+              <button class="btn-fb btn-fb-no" id="btn-fb-no">👎 Reject Recommendation</button>
+              <span id="fb-status" class="fb-status"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

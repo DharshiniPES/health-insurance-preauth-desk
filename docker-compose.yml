@@ -1,0 +1,84 @@
+version: '3.8'
+
+services:
+  # Service 1: API Gateway (FastAPI)
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: preauth-api
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=production
+      - LLM_PROVIDER=stub
+      - PORT=8000
+      - HOST=0.0.0.0
+      - REDIS_URL=redis://redis:6379/0
+      - ACTIVE_PROMPT_VERSION=v2
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped
+    networks:
+      - preauth-net
+
+  # Service 2: Asynchronous Multi-Agent Worker (Scalable with --scale agent-worker=3)
+  agent-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    environment:
+      - APP_ENV=production
+      - LLM_PROVIDER=stub
+      - REDIS_URL=redis://redis:6379/0
+      - ACTIVE_PROMPT_VERSION=v2
+    depends_on:
+      api:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - preauth-net
+
+  # Service 3: Redis Queue & Shared State
+  redis:
+    image: redis:7.0-alpine
+    container_name: preauth-redis
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+    networks:
+      - preauth-net
+
+  # Service 4: Prometheus Observability
+  prometheus:
+    image: prom/prometheus:v2.45.0
+    container_name: preauth-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - preauth-net
+
+networks:
+  preauth-net:
+    driver: bridge

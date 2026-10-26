@@ -1,0 +1,14 @@
+{
+  "built_at": "2026-10-25T18:07:19.924835",
+  "total_chunks": 25,
+  "policy_version": "2024.1",
+  "insurer": "Star Health & Allied Insurance Co. Ltd.",
+  "file_hashes": {
+    "policy_wording.json": "00a243435c6431d39980acdd40b387b53ac9b788058fac424197aac8ebe40a71",
+    "daycare_procedures.json": "a1fffcc8e71cb1af170970891a81bf4b7dfe9ddc84327f702f721c133dabaf87"
+  },
+  "build_duration_sec": 0.0,
+  "throughput_chunks_per_sec": 250000.0,
+  "chunking_strategy": "Clause-level semantic chunking with cross-referencing metadata (F4, L1)",
+  "status": "FRESH"
+}

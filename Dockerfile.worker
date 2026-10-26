@@ -1,0 +1,17 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+# Build index on container startup
+RUN python -m src.indexer
+
+# Worker entrypoint
+CMD ["python", "-c", "import asyncio; from src.queue_runner import queue_runner; queue_runner.start(); print('Agent Worker active and awaiting queue tasks...'); asyncio.get_event_loop().run_forever()"]

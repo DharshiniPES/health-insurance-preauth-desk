@@ -1,0 +1,124 @@
+{
+  "insurer": "Star Health & Allied Insurance Co. Ltd.",
+  "document_type": "Day Care Procedure Schedule",
+  "version": "2024.1",
+  "procedures": [
+    {
+      "code": "DC-EYE-01",
+      "name": "Cataract Surgery with Phacoemulsification and Foldable IOL",
+      "category": "Ophthalmology",
+      "icd10": "H25.9",
+      "waiting_period_ref": "SEC-WAIT-24M-SPECIFIC",
+      "sublimit_ref": "SEC-SUBLIM-CATARACT",
+      "notes": "Covered as Day Care. Bounded by 24-month waiting period and Rs. 40,000 sub-limit."
+    },
+    {
+      "code": "DC-EYE-02",
+      "name": "Vitrectomy and Retinal Detachment Laser Surgery",
+      "category": "Ophthalmology",
+      "icd10": "H33.0",
+      "waiting_period_ref": "SEC-WAIT-30D",
+      "sublimit_ref": null,
+      "notes": "Covered as Day Care under 30-day initial waiting period."
+    },
+    {
+      "code": "DC-ENT-01",
+      "name": "Tympanoplasty and Myringoplasty",
+      "category": "ENT",
+      "icd10": "H70.0",
+      "waiting_period_ref": "SEC-WAIT-24M-SPECIFIC",
+      "sublimit_ref": null,
+      "notes": "Covered as Day Care. Subject to 24-month waiting period."
+    },
+    {
+      "code": "DC-ENT-02",
+      "name": "Tonsillectomy and Adenoidectomy",
+      "category": "ENT",
+      "icd10": "J35.0",
+      "waiting_period_ref": "SEC-WAIT-24M-SPECIFIC",
+      "sublimit_ref": null,
+      "notes": "Subject to 24-month waiting period."
+    },
+    {
+      "code": "DC-SURG-01",
+      "name": "Laparoscopic Inguinal Hernioplasty / Herniorrhaphy",
+      "category": "General Surgery",
+      "icd10": "K40.9",
+      "waiting_period_ref": "SEC-WAIT-24M-SPECIFIC",
+      "sublimit_ref": null,
+      "notes": "Subject to 24-month waiting period."
+    },
+    {
+      "code": "DC-SURG-02",
+      "name": "Hydrocelectomy / Eversion of Sac",
+      "category": "General Surgery",
+      "icd10": "N43.3",
+      "waiting_period_ref": "SEC-WAIT-24M-SPECIFIC",
+      "sublimit_ref": null,
+      "notes": "Subject to 24-month waiting period."
+    },
+    {
+      "code": "DC-SURG-03",
+      "name": "Fistulotomy / Fistulectomy for Anal Fistula",
+      "category": "Proctology",
+      "icd10": "K60.3",
+      "waiting_period_ref": "SEC-WAIT-24M-SPECIFIC",
+      "sublimit_ref": null,
+      "notes": "Subject to 24-month waiting period."
+    },
+    {
+      "code": "DC-URO-01",
+      "name": "Extracorporeal Shock Wave Lithotripsy (ESWL) for Renal Calculi",
+      "category": "Urology",
+      "icd10": "N20.0",
+      "waiting_period_ref": "SEC-WAIT-24M-SPECIFIC",
+      "sublimit_ref": null,
+      "notes": "Subject to 24-month waiting period."
+    },
+    {
+      "code": "DC-URO-02",
+      "name": "Transurethral Resection of Prostate (TURP)",
+      "category": "Urology",
+      "icd10": "N40.1",
+      "waiting_period_ref": "SEC-WAIT-24M-SPECIFIC",
+      "sublimit_ref": null,
+      "notes": "Subject to 24-month waiting period."
+    },
+    {
+      "code": "DC-ONCO-01",
+      "name": "Chemotherapy Infusion for Malignant Neoplasm",
+      "category": "Oncology",
+      "icd10": "C50.9",
+      "waiting_period_ref": "SEC-WAIT-30D",
+      "sublimit_ref": null,
+      "notes": "Covered under Day Care after 30-day initial waiting period."
+    },
+    {
+      "code": "DC-NEPHRO-01",
+      "name": "Hemodialysis for End-Stage Renal Disease",
+      "category": "Nephrology",
+      "icd10": "N18.9",
+      "waiting_period_ref": "SEC-WAIT-30D",
+      "sublimit_ref": null,
+      "notes": "Covered as Day Care. Check PED status if chronic."
+    },
+    {
+      "code": "DC-ORTHO-01",
+      "name": "Diagnostic and Therapeutic Knee Arthroscopy",
+      "category": "Orthopedics",
+      "icd10": "M23.2",
+      "waiting_period_ref": "SEC-WAIT-24M-SPECIFIC",
+      "sublimit_ref": null,
+      "notes": "Subject to 24-month waiting period unless acute trauma."
+    },
+    {
+      "code": "DC-CARDIO-01",
+      "name": "Coronary Angiography (CAG)",
+      "category": "Cardiology",
+      "icd10": "I25.1",
+      "waiting_period_ref": "SEC-WAIT-30D",
+      "sublimit_ref": null,
+      "notes": "Day care covered when undertaken for diagnostic confirmation."
+    }
+  ]
+}
