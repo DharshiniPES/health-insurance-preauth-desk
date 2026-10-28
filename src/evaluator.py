@@ -65,13 +65,19 @@ async def evaluate_single_scenario(scenario: Dict[str, Any], prompt_version: str
     }
 
 
-async def run_batch_evaluation():
-    eval_file = DATA_DIR / "eval_scenarios.json"
+async def run_batch_evaluation(dataset_type: str = "standard"):
+    if dataset_type == "hard":
+        eval_file = DATA_DIR / "hard_eval_scenarios.json"
+        title = "HARD STRESS-TEST BENCHMARK (Ambiguous, Conflicting & Adversarial Cases)"
+    else:
+        eval_file = DATA_DIR / "eval_scenarios.json"
+        title = "STANDARD BENCHMARK (20 Baseline & Requirement Scenarios)"
+
     with open(eval_file, "r", encoding="utf-8") as f:
         scenarios = json.load(f)
 
     print("=" * 80)
-    print("PRE-AUTH AGENT DESK — BATCH EVALUATION SUITE (L2, L3)")
+    print(f"PRE-AUTH AGENT DESK — {title}")
     print(f"Total Scenarios in Benchmark: {len(scenarios)}")
     print("=" * 80)
 
@@ -139,4 +145,6 @@ async def run_batch_evaluation():
 
 
 if __name__ == "__main__":
-    asyncio.run(run_batch_evaluation())
+    import sys
+    mode = "hard" if "--hard" in sys.argv else "standard"
+    asyncio.run(run_batch_evaluation(mode))
