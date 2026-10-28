@@ -124,12 +124,24 @@ class MetricsTracker:
 
     def record_feedback(self, run_id: str, satisfactory: bool, reason: str):
         FEEDBACK_TOTAL.labels(satisfactory=str(satisfactory)).inc()
-        self.feedback_list.append({
+        entry = {
             "run_id": run_id,
             "satisfactory": satisfactory,
             "reason": reason,
-            "timestamp": time.time()
-        })
+            "timestamp": time.time(),
+            "datetime": time.strftime("%Y-%m-%d %H:%M:%S")
+        }
+        self.feedback_list.append(entry)
+
+        # Persist feedback to disk (Requirement L6)
+        try:
+            from src.config import DATA_DIR
+            import json
+            feedback_file = DATA_DIR / "feedback.jsonl"
+            with open(feedback_file, "a", encoding="utf-8") as f:
+                f.write(json.dumps(entry) + "\n")
+        except Exception:
+            pass
 
     def get_summary_stats(self) -> Dict[str, Any]:
         p50 = 0.0

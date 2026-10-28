@@ -147,6 +147,15 @@ async def submit_feedback(fb: FeedbackRequest):
         "message": "Feedback successfully logged into quality analytics."
     }
 
+@app.get("/api/v1/feedback", summary="Retrieve all persisted medical officer feedback (L6)")
+async def get_feedback():
+    """Returns all persisted and aggregated feedback entries for quality monitoring."""
+    return {
+        "total_feedback": len(metrics_tracker.feedback_list),
+        "satisfaction_rate_percent": metrics_tracker.get_summary_stats().get("satisfaction_rate_percent", 100.0),
+        "entries": metrics_tracker.feedback_list
+    }
+
 
 # ------------------------------------------------------------------------------
 # 4. Quarantine Inspector (D1)
